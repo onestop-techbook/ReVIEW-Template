@@ -1,82 +1,86 @@
 PREDEF:
 # 1.　この本の目的
-  - preface.re
+  - 00x1xpreface.re
 
 CHAPS:
 # 4.　技術書オンリー+コミケ　参加のメリット
-  - 04-attendEvent.re
+  - 01x04-attendEvent.re
 
 # 4 イベント参加のメリットとネタだしに関連する感じですがうまく編集していただければ！！
-  - output.re
+  - 02xoutput.re
 
 # 5.　ネタ出し法
-  - 05-thinkScript.re
+  - 03x05-thinkScript.re
 
 # 　・本のスタイル（サイズ、印刷方法）に関して考える。
-  - book-style.re
+  - 04xbook-style.re
 
 # 表紙を作る
-  - frontcover.re
-  - sec-cover.re
+  - 05xfrontcover.re
+  - 06xsec-cover.re
 
 # 6.　執筆環境について：本文を書くので、ここ。
-  - writing.re
+  - 07xwriting.re
 
 # 図を埋め込む（MacOS編）
-  - sec-image.re
+  - 08xsec-image.re
 # 図を埋め込む（Windows 7編）
-  - sec-image-win7.re
+  - 09xsec-image-win7.re
 # ノンブルについて
-  - sec-nombre.re
+  - 10xsec-nombre.re
 
 # 7.　印刷業者に頼むためのTips
 # 印刷所に発注するために必要なこと。
-  - 07-howToOrder.re
+  - 11x07-howToOrder.re
 
 # 準備をしよう。
 # 8.　当日までの準備
 # 　・持ち物リスト
 # 　・告知をしよう
-  - prepare.re
+  - 12xprepare.re
 
 # 9.　当日朝、開場までの準備
-  - 09-morning.re
+  - 13x09-morning.re
 
 # 10.　開催中のTips
 # 　・イベント中のオペレーション体制
 # 　・ワンオペ時の回し方
-  - 10-eventTips.re
+  - 14x10-eventTips.re
 
 # 11.　イベント終わってからやること
 
-  - 11-afterevent.re
+  - 15x11-afterevent.re
 
 
 # 13.　委託しよう　ZIN委託もここに書く
-  - 13-booth.re
+  - 16x13-booth.re
 
 # 14.　コミュニティに参加する
 # 　・もくもく会とか。
-  - 14-Meetup.re
+  - 17x14-Meetup.re
 
 # 15.　お金の話
 # 　・印刷費用と頒布価格、イベント収支
-  - 15-aboutMoney.re
+  - 18x15-aboutMoney.re
+
+# 15. 税金の話を独立。
+  - 19xaboutTax.re
 
 # 16.　次の締切を手に入れる&モチベーションの話。
-  - 16-tempTopix.re
+  - 20x16-tempTopix.re
 
 APPENDIX:
 
 # なにか付録があれば
-# 3.　この本の執筆環境について
-  - 01-writing.re
 
 # Re:VIEWのインストール（Windows7編）
   - sec-windows7-installation.re
 
 # Wordの簡単な入門
   - sec-word-intro.re
+
+# 同人執筆者たちの生き様
+  - writers-life.re
 
 POSTDEF:
 # 16.　あとがき
