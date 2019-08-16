@@ -27,7 +27,7 @@ TeXとRubyのどちらを先にインストールしても問題ありません�
 
 TeXと呼ばれるソフトには、実は色々なバリエーションがあります。
 オリジナルのTeXに色々な拡張が加えられているからです。
-Windowsで使えるTeXとしては、W32TeXやTeX Liveがあります。
+Windowsで使えるTeXとしては、W32TeXやTeXLiveがあります。
 ここでは、W32TeXを使った手順を紹介します。
 なぜかって？それはこの章の著者が元々W32TeXを使っていたからです:-)。
 
@@ -162,7 +162,7 @@ TeXをインストールしたフォルダ（C:\TeX、皆さんがフォルダ�
 //image[ReviewWin7_texinst_11_cmd][コマンドプロンプトの起動][scale=0.5]{
 //}
 //noindent
-この状態でplatexと打ってエンターを押しみましょう。
+起動したコマンドプロンプト内でplatexと打ってエンターを押してみましょう。
 //cmd{
 > platex
 //}
@@ -343,7 +343,7 @@ dvioptions: "-f msmingoth.map -d 5"
 複数人で共同編執筆している場合、全員Windowsを使っていますか？MacやLinuxを使っている共同執筆者はいませんか？
 もしWindows以外のOSを使っている人がいると、このオプションが悪さをする可能性があるので、
 上書き保存はせずに名前を付けて新しく保存してください。
-この章の著者は@<tt>{config_W32TeX.yml}という名前を使っています。
+この章の著者は@<tt>{config_W32TeX.yml}という名前を使っています@<fn>{NOTATION_GIT}。
 
 これでもう一度コマンドプロンプトから@<tt>{review-pdfmaker}を実行しましょう。
 新しく名前を付けて@<tt>{config.yml}を保存した人は、そのymlファイルを使ってください。たとえば次のようにして実行します。
@@ -365,10 +365,11 @@ warningは出ますが順調に変換が進んでいきます。
  4. @<tt>{config.yml}の@<tt>{dvioptions}に@<tt>{-f msmingoth.map}を追加
 //noindent
 手順4は読者の環境によっては必要ない可能性もあります。
-もし手順4が必要な場合、各ソフトのインストールは一度だけでよいのですが、@<ttb>{config.yml}@<b>{にオプションを追記するのは原稿毎に行う必要があることに注意してください。}
+もし手順4が必要な場合、各ソフトウェアのインストールは一度だけでよいのですが、@<ttb>{config.yml}@<b>{にオプションを追記するのは原稿毎に行う必要があることに注意してください。}
 
-//footnote[SAMPLE_PDFMAKER_RESULT][著作権がよく分からないので、ファイルが作られたことだけを示しています。]
 //footnote[FONTERROR][もし何事もなくPDFファイルが作られていたら、以降の説明は読み飛ばして次の節に進んでも問題ありません。]
+//footnote[NOTATION_GIT][Github等で管理しながら共同執筆する際の@<tt>{config_W32TeX.yml}の取り扱いを、@<hd>{ReviewWin7-gitignore}に書いているので目を通しておいてください。]
+//footnote[SAMPLE_PDFMAKER_RESULT][著作権がよく分からないので、ファイルが作られたことだけを示しています。]
 
 == Visual Studio CodeのRe:VIEW用拡張機能と編集作業
 
@@ -459,17 +460,89 @@ PDFファイルを上書きできなくなるので、編集作業に戻る、�
 
 //footnote[VSCODEREVIEW][先ほどはconfig_W32TeX.ymlを使っていましたが、より一般的な説明のためにconfig.ymlを使っています。先の説明に沿ってdvioptionsが追記されています。]
 
+=={ReviewWin7-Notation} Githubを使って原稿を共同執筆するの際の注意
+
+ここまででRe:VIEWの執筆環境を整えてきましたが、最後に2点だけ注意を述べておきます。
+種類の異なる注意点ですが、両者ともGithub（だけでなくBitBucket等の分散バージョン管理システム）に関係しているのでここにまとめておきます。
+
+==={ReviewWin7-gitignore} Windows以外のOS利用者と共同執筆する場合
+
+Windowsを使っている場合、Re:VIEWでPDFファイルを出力する際に@<tt>{config.yml}を編集してオプションを追加する必要があることを@<hd>{ReviewWin7-ReView}で説明しました。
+そして、複数人で共同執筆する場合でかつ共同執筆者にWindows以外のOSを使っている人がいると、このオプションが悪さをする可能性があること、それを回避するために名前を付けて（例えば@<tt>{config_W32TeX.yml}等）新しく保存することも説明しました。
+
+このような状況で共同執筆の原稿を管理するためにGithubを使っていると、新しく名前を付けて保存した@<tt>{config_W32TeX.yml}がGitのリポジトリに登録され、Githubを経由して共同執筆者全員にコピーされる事になります。
+@<tt>{config_W32TeX.yml}が必要なのは、
+
+ *Windowsを使用している
+ *フォントにMSゴシックとMS明朝を使う
+
+//noindent
+という条件を満たす人なので、共同執筆者全員で共有する必要はありません。
+@<tt>{config_W32TeX.yml}がGitのリポジトリに登録されないように、@<tt>{.gitignore}に@<tt>{config_W32TeX.yml}を追加しておきましょう。
+
+==={ReviewWin7-Sty} styファイルが見つからないというエラーが出る場合
+
+これは、共同執筆環境が既に整えられているところに著者として合流すると、お目にかかる可能性のあるエラーです。
+本書の共同執筆環境でも発生します。
+この章を読んでRe:VIEWの執筆環境を整えることができたので、試しに本書のリポジトリをforkしてPDFファイルを作ってみようとすると、100％遭遇します@<fn>{join_project}。
+その状況を想定して、どのようなエラーが出るか、どうやって対処するかを説明します。
+
+とりあえず、本書のリポジトリをforkしてローカルにダウンロードし、PDFファイルを作るために@<tt>{review-pdfmaker}を実行してみます。
+途中までは順調に進んでいき、これはうまくいきそうだという期待を持たせてくれるのですが、
+次のようなエラーがでて止まってしまいます。
+//cmd{
+! LaTeX Error: File `seqsplit.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name:
+//}
+//noindent
+@<tt>{seqsplit.sty}というファイルが見つからないというエラーです。
+これはWindowsやRe:VIEWに問題があるのではなく、TeXで処理をするときに使うファイルが存在しない事が原因で発生します。
+そして、（Re:VIEWの対象と思われる）TeXにあまり明るくない人にはかなりわかりにくいエラーです。
+ファイルがなければインターネットで探してダウンロードすればよいのですが、そこにもう一つ罠が隠れているのがこのエラーの厄介なところです。
+Googleなどで@<tt>{seqsplit.sty}を検索すると、簡単にダウンロードページが見つかります@<fn>{seqsplit_url}。
+ところが、そのダウンロードページからダウンロードできるファイルの一覧に、@<tt>{seqsplit.sty}は存在していません。
+もったい付けても仕方ないので答えをいうと、必要なのは拡張子が@<tt>{ins}と@<tt>{dtx}のファイルです。
+それらから@<tt>{seqsplit.sty}を作ります。
+
+@<tt>{seqsplit.ins}と@<tt>{seqsplit.dtx}をダウンロードし、TeXのstyファイルが置いてあるフォルダにコピーします。
+場所はTeXをインストールしたフォルダ（本章ではC:\TeX、皆さんがフォルダを変更していればそのフォルダ）以下の\share\texmf-dist\tex\latexです。
+そこにseqsplitというフォルダを作り、ダウンロードした@<tt>{seqsplit.ins}と@<tt>{seqsplit.dtx}を移動してください。
+フォルダ名は任意ですが、styファイルの名前と同じフォルダ名になっていることが多いので、それに倣います。
+//image[ReviewWin7_sty_1][seqsplit.insとseqsplit.dtxの保存][scale=0.5]{
+//}
+
+アドレスバーにcmdと入力してコマンドプロンプトを起動し、次のコマンドを実行します。
+//cmd{
+> platex seqsplit.ins
+//}
+色々と表示されますが、フォルダに@<tt>{seqsplit.sty}が作られていることを確認できます。
+//image[ReviewWin7_sty_2][platexによって作成されたseqsplit.sty][scale=0.5]{
+//}
+
+これで@<tt>{seqsplit.sty}のインストールは完了です。
+もう一度、@<tt>{review-pdfmaker}を実行してみてください。
+今度はエラーが出ずにPDFファイルの作成までいくはずです。
+
+なお、他のstyファイルが存在しない場合も、ここに書いた方法と同じ手順でstyファイルをインストールすることができます。
+
+//footnote[seqsplit_url][seqsplit.styは@<href>{https://ctan.org/tex-archive/macros/latex/contrib/seqsplit}にアーカイブされています。]
+//footnote[join_project][それ以外に戸惑うこととしては、原稿管理の方針、特にディレクトリ構造が上げられます。リポジトリをforkしてローカルにダウンロードしたはよいけれども、ディレクトリ直下に原稿やconfig.ymlが見当たらない･･･なんてことも十分あり得ます。合流する際は、原稿管理の方針（特に原稿本体である.reファイルと画像ファイルの置き場所、場合によってはサンプルコードの置き場）をよく確認しましょう。ちなみに本書では、リポジトリのルート直下にあるarticlesというフォルダで原稿を管理しています．]
+
 =={ReviewWin7_summary} この章のまとめ
 
 この章では、Windows 7でRe:VIEW環境を構築して、Visual Studio Codeで編集してPDFを出力するところまで説明しました。
 事前に情報を集めてややこしいなぁと思っていた方は、意外に簡単で拍子抜けしたのではないかと思います。
-締切（とストレージ）の都合上、TeX Liveを試せなかったのは残念ですが、問題なく使えるのではないかと予想しています。
+締切（とストレージ）の都合上、TeXLiveを試せなかったのは残念ですが、問題なく使えるのではないかと予想しています。
 もし、本書をお読みになった方で知見をお持ちの方は、ぜひ公開してください。
 これで次の技術書典のネタが一つ見つかりましたね。
 
-====[column] Windows 7にRe:VIEW環境を構築するたった四つの方法 @ 暗黙の型宣言
+====[column] Windows 7にRe:VIEW環境を構築するたった四つの方法：暗黙の型宣言
 
-Windows 7にRe:VIEW環境を構築する方法は（実は）たくさんあり、この手順を見つけるまでには紆余曲折がありました@<fn>{WIN10ENV}。
+Windows 7にRe:VIEW環境を構築する方法は他にもあり、この手順を見つけるまでには紆余曲折がありました@<fn>{WIN10ENV}。
 私が試したのは次の４通りです。
 
  1. インターネット上の説明に沿ってDocker for Windowsを使う方法。この方法は、仮想化環境を動かすためのVirtualBoxがVMWareと相性が悪いので使えませんでした。
